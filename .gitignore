@@ -35,8 +35,12 @@ nbproject
 #############################
 .*
 !/.gitignore
+
+# Project specific files and directories #
+##########################################
 /ta-lib/
 logs/
+test-results/
 metrics/
 vendor/
 *.bat
