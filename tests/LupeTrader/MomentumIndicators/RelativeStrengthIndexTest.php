@@ -6,7 +6,7 @@ use LupeCode\phpTraderNative\LupeTrader\MomentumIndicators\RelativeStrengthIndex
 use LupeCode\phpTraderNativeTest\TestingTrait;
 use PHPUnit\Framework\TestCase;
 
-class RSITest extends TestCase
+class RelativeStrengthIndexTest extends TestCase
 {
     use TestingTrait;
 

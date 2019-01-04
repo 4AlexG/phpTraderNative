@@ -4,7 +4,7 @@ namespace LupeCode\phpTraderNative\LupeTrader\MomentumIndicators;
 
 use LupeCode\phpTraderNative\TALib\Enum\ReturnCode;
 
-class RSI
+class RelativeStrengthIndex
 {
 
     const DEFAULT_PERIOD = 14;
@@ -12,7 +12,7 @@ class RSI
     /** @var array */
     protected $inputArray;
     /** @var int */
-    protected $inputTimePeriod = self::DEFAULT_PERIOD;
+    protected $period = self::DEFAULT_PERIOD;
     /** @var array */
     protected $outputArray;
 
@@ -29,13 +29,13 @@ class RSI
     }
 
     /**
-     * @param int $inputTimePeriod
+     * @param int $period
      *
      * @return $this
      */
-    public function setInputTimePeriod(int $inputTimePeriod)
+    public function setPeriod(int $period)
     {
-        $this->inputTimePeriod = $inputTimePeriod;
+        $this->period = $period;
 
         return $this;
     }
@@ -56,7 +56,7 @@ class RSI
      */
     protected function rsiFormula(float $gains, float $losses): float
     {
-        $rs  = ($gains / $this->inputTimePeriod) / ($losses / $this->inputTimePeriod);
+        $rs  = ($gains / $this->period) / ($losses / $this->period);
         $rsi = (100 - (100 / (1 + $rs)));
 
         return $rsi;
@@ -68,18 +68,18 @@ class RSI
      */
     public function calculate()
     {
-        if (empty($this->inputArray) || empty($this->inputTimePeriod)) {
+        if (empty($this->inputArray) || empty($this->period)) {
             throw new \Exception("Input parameters missing", 7);
         }
         $count = count($this->inputArray);
-        if ($count < $this->inputTimePeriod) {
+        if ($count < $this->period) {
             $this->outputArray = [];
 
             return $this;
         }
         $gains  = 0;
         $losses = 0;
-        for ($iterator = 1; $iterator <= $this->inputTimePeriod; $iterator++) {
+        for ($iterator = 1; $iterator <= $this->period; $iterator++) {
             $delta = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
             if ($delta > 0) {
                 $gains += $delta;
@@ -87,15 +87,15 @@ class RSI
                 $losses += -$delta;
             }
         }
-        $rsi = [$this->inputTimePeriod => $this->rsiFormula($gains, $losses)];
+        $rsi = [$this->period => $this->rsiFormula($gains, $losses)];
         for (; $iterator < $count; $iterator++) {
             $delta = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
             if ($delta > 0) {
-                $gains  = $gains * ($this->inputTimePeriod - 1) / $this->inputTimePeriod + $delta;
-                $losses = $losses * ($this->inputTimePeriod - 1) / $this->inputTimePeriod + 0.;
+                $gains  = $gains * ($this->period - 1) / $this->period + $delta;
+                $losses = $losses * ($this->period - 1) / $this->period + 0.;
             } else {
-                $gains  = $gains * ($this->inputTimePeriod - 1) / $this->inputTimePeriod + 0.;
-                $losses = $losses * ($this->inputTimePeriod - 1) / $this->inputTimePeriod + -$delta;
+                $gains  = $gains * ($this->period - 1) / $this->period + 0.;
+                $losses = $losses * ($this->period - 1) / $this->period + -$delta;
             }
             $rsi[] = $this->rsiFormula($gains, $losses);
         }
@@ -107,17 +107,17 @@ class RSI
     /**
      * Relative Strength Index
      *
-     * @param array $inputArray      Array of real values.
-     * @param int   $inputTimePeriod [OPTIONAL] [DEFAULT RSI_DEFAULT_PERIOD, SUGGESTED 4-200] Number of period. Valid range from 2 to 100000.
+     * @param array $inputArray Array of real values.
+     * @param int   $period     [OPTIONAL] [DEFAULT RSI_DEFAULT_PERIOD, SUGGESTED 4-200] Number of period. Valid range from 2 to 100000.
      *
      * @return array Returns an array with calculated data.
      * @throws \Exception
      */
-    public static function rsi(array $inputArray, int $inputTimePeriod = self::DEFAULT_PERIOD): array
+    public static function rsi(array $inputArray, int $period = self::DEFAULT_PERIOD): array
     {
         $self = new self();
         $self
-            ->setInputTimePeriod($inputTimePeriod)
+            ->setPeriod($period)
             ->setInputArray($inputArray)
             ->calculate()
         ;

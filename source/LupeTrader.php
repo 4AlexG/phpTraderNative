@@ -2,9 +2,8 @@
 
 namespace LupeCode\phpTraderNative;
 
-use LupeCode\phpTraderNative\LupeTrader\MomentumIndicators\RSI;
+use LupeCode\phpTraderNative\LupeTrader\MomentumIndicators\RelativeStrengthIndex;
 use LupeCode\phpTraderNative\TALib\Enum\MovingAverageType;
-use LupeCode\phpTraderNative\TALib\Enum\ReturnCode;
 
 class LupeTrader extends Trader
 {
@@ -20,7 +19,7 @@ class LupeTrader extends Trader
      */
     public static function rsi(array $real, int $timePeriod = 14): array
     {
-        return RSI::rsi($real, $timePeriod);
+        return RelativeStrengthIndex::rsi($real, $timePeriod);
     }
 
     /**
@@ -41,7 +40,7 @@ class LupeTrader extends Trader
     {
         $real     = \array_values($real);
         $endIdx   = count($real) - 1;
-        $rsi      = RSI::rsi($real, $rsiPeriod);
+        $rsi      = static::rsi($real, $rsiPeriod);
         $rsi      = array_values($rsi);
         $endIdx   = self::verifyArrayCounts([&$rsi]);
         $outSlowK = [];
