@@ -7,12 +7,12 @@ use LupeCode\phpTraderNative\TALib\Enum\ReturnCode;
 class RSI
 {
 
-    const RSI_DEFAULT_PERIOD = 14;
+    const DEFAULT_PERIOD = 14;
 
     /** @var array */
     protected $inputArray;
     /** @var int */
-    protected $inputTimePeriod = self::RSI_DEFAULT_PERIOD;
+    protected $inputTimePeriod = self::DEFAULT_PERIOD;
     /** @var array */
     protected $outputArray;
 
@@ -113,7 +113,7 @@ class RSI
      * @return array Returns an array with calculated data.
      * @throws \Exception
      */
-    public static function rsi(array $inputArray, int $inputTimePeriod = self::RSI_DEFAULT_PERIOD): array
+    public static function rsi(array $inputArray, int $inputTimePeriod = self::DEFAULT_PERIOD): array
     {
         $self = new self();
         $self
