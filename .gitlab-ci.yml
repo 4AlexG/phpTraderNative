@@ -4,7 +4,8 @@
     - apt-get update -yqq
     - apt-get install git zlib1g-dev -yqq
     - docker-php-ext-install zip
-    - pecl install xdebug-2.5.0
+    - pecl install xdebug
+    - pecl install trader
     - docker-php-ext-enable xdebug
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install
