@@ -6,8 +6,8 @@
     - docker-php-ext-install zip
     - pecl install xdebug
     - pecl install trader
-    - docker-php-ext-enable xdebug
     - docker-php-ext-enable trader
+    - echo "memory_limit = 256M" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar update
   script:
@@ -18,21 +18,12 @@
     paths:
       - vendor/
 
-test:7.0-nts:
+test:7.0:
   image: php:7.0
   extends: .tests
-test:7.1-nts:
+test:7.1:
   image: php:7.1
   extends: .tests
-test:7.2-nts:
+test:7.2:
   image: php:7.2
-  extends: .tests
-test:7.0-zts:
-  image: php:7.0-zts
-  extends: .tests
-test:7.1-zts:
-  image: php:7.1-zts
-  extends: .tests
-test:7.2-zts:
-  image: php:7.2-zts
   extends: .tests
