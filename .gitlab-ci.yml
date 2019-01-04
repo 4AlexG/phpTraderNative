@@ -3,11 +3,11 @@
   before_script:
     - apt-get update -yqq
     - apt-get install git zlib1g-dev -yqq
+    - echo "memory_limit = 256M" >> "$PHP_INI_DIR/php.ini"
     - docker-php-ext-install zip
     - pecl install xdebug
     - pecl install trader
     - docker-php-ext-enable trader
-    - echo "memory_limit = 256M" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar update
   script:
