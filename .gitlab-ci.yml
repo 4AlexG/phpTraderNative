@@ -11,9 +11,9 @@
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar update
   script:
-    - phpdismod -s cli xdebug
-    - vendor/bin/phpunit --configuration ./phpunit.xml
-    - phpenmod -s cli xdebug
+#    - phpdismod -s cli xdebug
+#    - vendor/bin/phpunit --configuration ./phpunit.xml
+#    - phpenmod -s cli xdebug
     - vendor/bin/phpunit --coverage-text --colors=never --configuration ./phpunit_coverage.xml
   cache:
     paths:
