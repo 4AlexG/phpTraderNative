@@ -9,7 +9,7 @@
     - docker-php-ext-enable xdebug
     - docker-php-ext-enable trader
     - curl -sS https://getcomposer.org/installer | php
-    - php composer.phar install
+    - php composer.phar update
   script:
     - vendor/bin/phpunit DISABLE_XDEBUG="true" --configuration ./phpunit.xml
     - vendor/bin/phpunit --coverage-text --colors=never --configuration ./phpunit_coverage.xml
