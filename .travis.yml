@@ -1,0 +1,18 @@
+language: php
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+
+before_script:
+  - sudo apt-get update > /dev/null
+  - echo "memory_limit = 256M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - pecl install trader > /dev/null
+  - composer update
+
+script:
+  - vendor/bin/phpunit --configuration ./phpunit_coverage.xml --coverage-clover build/logs/clover.xml
+
+after_success:
+  - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
+  - php php-coveralls.phar --verbose;
