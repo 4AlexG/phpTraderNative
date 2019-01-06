@@ -81,13 +81,13 @@ class RelativeStrengthIndex
         for ($iterator = 1; $iterator <= $this->period; $iterator++) {
             $delta  = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
             $gains  += max($delta, 0);
-            $losses += min(-$delta, 0);
+            $losses += -min($delta, 0);
         }
         $rsi = [$this->period => $this->rsiFormula($gains, $losses)];
         for (; $iterator < $count; $iterator++) {
             $delta  = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
             $gains  = $gains * ($this->period - 1) / $this->period + max($delta, 0);
-            $losses = $losses * ($this->period - 1) / $this->period + min(-$delta, 0);
+            $losses = $losses * ($this->period - 1) / $this->period + -min($delta, 0);
             $rsi[]  = $this->rsiFormula($gains, $losses);
         }
         $this->outputArray = $rsi;
