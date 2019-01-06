@@ -9,20 +9,6 @@ class LupeTrader extends Trader
 {
 
     /**
-     * Relative Strength Index
-     *
-     * @param array $real       Array of real values.
-     * @param int   $timePeriod [OPTIONAL] [DEFAULT 14, SUGGESTED 4-200] Number of period. Valid range from 2 to 100000.
-     *
-     * @return array Returns an array with calculated data.
-     * @throws \Exception
-     */
-    public static function rsi(array $real, int $timePeriod = 14): array
-    {
-        return RelativeStrengthIndex::rsi($real, $timePeriod);
-    }
-
-    /**
      * Slow Stochastic Relative Strength Index
      *
      * @param array $real        Array of real values.

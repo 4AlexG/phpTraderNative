@@ -2,8 +2,6 @@
 
 namespace LupeCode\phpTraderNative\LupeTrader\MomentumIndicators;
 
-use LupeCode\phpTraderNative\TALib\Enum\ReturnCode;
-
 class RelativeStrengthIndex
 {
 
@@ -29,11 +27,11 @@ class RelativeStrengthIndex
     }
 
     /**
-     * @param int $period
+     * @param int $period [OPTIONAL] [DEFAULT self::DEFAULT_PERIOD, SUGGESTED 4-200] Number of period. Valid range from 2 to 100000.
      *
      * @return $this
      */
-    public function setPeriod(int $period)
+    public function setPeriod(int $period = self::DEFAULT_PERIOD)
     {
         $this->period = $period;
 
@@ -68,13 +66,12 @@ class RelativeStrengthIndex
      */
     public function calculate()
     {
+        $this->outputArray = [];
         if (empty($this->inputArray) || empty($this->period)) {
             throw new \Exception("Input parameters missing", 7);
         }
         $count = count($this->inputArray);
         if ($count < $this->period) {
-            $this->outputArray = [];
-
             return $this;
         }
         $gains  = 0;
@@ -102,27 +99,6 @@ class RelativeStrengthIndex
         $this->outputArray = $rsi;
 
         return $this;
-    }
-
-    /**
-     * Relative Strength Index
-     *
-     * @param array $inputArray Array of real values.
-     * @param int   $period     [OPTIONAL] [DEFAULT RSI_DEFAULT_PERIOD, SUGGESTED 4-200] Number of period. Valid range from 2 to 100000.
-     *
-     * @return array Returns an array with calculated data.
-     * @throws \Exception
-     */
-    public static function rsi(array $inputArray, int $period = self::DEFAULT_PERIOD): array
-    {
-        $self = new self();
-        $self
-            ->setPeriod($period)
-            ->setInputArray($inputArray)
-            ->calculate()
-        ;
-
-        return $self->getOutputArray();
     }
 
 }
