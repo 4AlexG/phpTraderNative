@@ -2,6 +2,8 @@
 
 namespace LupeCode\phpTraderNative\LupeTrader\MomentumIndicators;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
+
 class RelativeStrengthIndex
 {
 
@@ -68,7 +70,7 @@ class RelativeStrengthIndex
     {
         $this->outputArray = [];
         if (empty($this->inputArray) || empty($this->period)) {
-            throw new \Exception("Input parameters missing", 7);
+            throw new Exception(Exception::INPUT_PARAMETERS_MISSING_MESSAGE, Exception::INPUT_PARAMETERS_MISSING_CODE);
         }
         $count = count($this->inputArray);
         if ($count < $this->period) {
@@ -77,24 +79,16 @@ class RelativeStrengthIndex
         $gains  = 0;
         $losses = 0;
         for ($iterator = 1; $iterator <= $this->period; $iterator++) {
-            $delta = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
-            if ($delta > 0) {
-                $gains += $delta;
-            } else {
-                $losses += -$delta;
-            }
+            $delta  = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
+            $gains  += max($delta, 0);
+            $losses += min(-$delta, 0);
         }
         $rsi = [$this->period => $this->rsiFormula($gains, $losses)];
         for (; $iterator < $count; $iterator++) {
-            $delta = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
-            if ($delta > 0) {
-                $gains  = $gains * ($this->period - 1) / $this->period + $delta;
-                $losses = $losses * ($this->period - 1) / $this->period + 0.;
-            } else {
-                $gains  = $gains * ($this->period - 1) / $this->period + 0.;
-                $losses = $losses * ($this->period - 1) / $this->period + -$delta;
-            }
-            $rsi[] = $this->rsiFormula($gains, $losses);
+            $delta  = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
+            $gains  = $gains * ($this->period - 1) / $this->period + max($delta, 0);
+            $losses = $losses * ($this->period - 1) / $this->period + min(-$delta, 0);
+            $rsi[]  = $this->rsiFormula($gains, $losses);
         }
         $this->outputArray = $rsi;
 
