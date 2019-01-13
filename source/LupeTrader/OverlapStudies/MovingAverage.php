@@ -61,7 +61,8 @@ class MovingAverage implements Calculation
      */
     public function setInputArray(array $inputArray)
     {
-        $this->inputArray = array_values($inputArray);
+        $this->inputArray  = array_values($inputArray);
+        $this->outputArray = [];
 
         return $this;
     }
@@ -93,7 +94,7 @@ class MovingAverage implements Calculation
     public function calculate()
     {
         $this->outputArray = [];
-        if (empty($this->inputArray) || empty($this->inputMovingAveragePeriod)) {
+        if (is_null($this->inputArray) || is_null($this->inputMovingAveragePeriod)) {
             throw new Exception(Exception::INPUT_PARAMETERS_MISSING_MESSAGE, Exception::INPUT_PARAMETERS_MISSING_CODE);
         }
         $count = count($this->inputArray);
