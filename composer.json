@@ -19,6 +19,7 @@
     "phpunit/phpunit": "~6.0",
     "phpmetrics/phpmetrics": "~2.3",
     "ext-trader": "~0.4",
+    "phpbench/phpbench": "~0.15",
     "codacy/coverage": "~1.4"
   },
   "autoload": {

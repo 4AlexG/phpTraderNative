@@ -1,0 +1,19 @@
+{
+  "bootstrap": "vendor/autoload.php",
+  "path": "benchmarks",
+  "reports": {
+    "my_report": {
+      "generator": "table",
+      "cols": [
+        "subject",
+        "mean",
+        "diff"
+      ],
+      "diff_col": "mean",
+      "break": [
+        "benchmark",
+        "revs"
+      ]
+    }
+  }
+}
