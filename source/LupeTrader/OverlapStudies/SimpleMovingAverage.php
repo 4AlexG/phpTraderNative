@@ -64,9 +64,10 @@ class SimpleMovingAverage implements Calculation
 
             return $this;
         }
-        for ($iterator = $this->period; $iterator < $count; $iterator++) {
+        for ($iterator = $this->period; $iterator <= $count; $iterator++) {
             $subArray = array_slice($this->inputArray, $iterator - $this->period, $this->period);
-            $this->outputArray[$iterator]    = array_sum($subArray) / $this->period;
+
+            $this->outputArray[$iterator - 1] = array_sum($subArray) / $this->period;
         }
 
         return $this;
