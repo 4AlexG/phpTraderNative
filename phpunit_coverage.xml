@@ -5,11 +5,6 @@
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd"
         bootstrap="vendor/autoload.php"
         verbose="true"
-        convertDeprecationsToExceptions="false"
-        convertErrorsToExceptions="false"
-        convertNoticesToExceptions="false"
-        convertWarningsToExceptions="false"
-        processIsolation="false"
 >
 
     <testsuites>
