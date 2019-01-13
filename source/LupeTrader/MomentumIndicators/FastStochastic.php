@@ -36,7 +36,7 @@ class FastStochastic implements Calculation
     /**
      * @param array $inputClose
      *
-     * @return FastStochastic
+     * @return $this
      */
     public function setInputClose(array $inputClose)
     {
@@ -48,7 +48,7 @@ class FastStochastic implements Calculation
     /**
      * @param array $inputHigh
      *
-     * @return FastStochastic
+     * @return $this
      */
     public function setInputHigh(array $inputHigh)
     {
@@ -60,7 +60,7 @@ class FastStochastic implements Calculation
     /**
      * @param array $inputLow
      *
-     * @return FastStochastic
+     * @return $this
      */
     public function setInputLow(array $inputLow)
     {
@@ -72,7 +72,7 @@ class FastStochastic implements Calculation
     /**
      * @param int $inputFastKPeriod
      *
-     * @return FastStochastic
+     * @return $this
      */
     public function setInputFastKPeriod(int $inputFastKPeriod)
     {
@@ -84,7 +84,7 @@ class FastStochastic implements Calculation
     /**
      * @param int $inputFastDPeriod
      *
-     * @return FastStochastic
+     * @return $this
      */
     public function setInputFastDPeriod(int $inputFastDPeriod)
     {
@@ -96,7 +96,7 @@ class FastStochastic implements Calculation
     /**
      * @param int $inputMovingAverageType
      *
-     * @return FastStochastic
+     * @return $this
      */
     public function setInputMovingAverageType(int $inputMovingAverageType)
     {
@@ -152,8 +152,7 @@ class FastStochastic implements Calculation
         if (empty($this->movingAverage)) {
             $this->movingAverage = new MovingAverage();
         }
-        $this->outputFastD = $this
-            ->movingAverage
+        $this->outputFastD = $this->movingAverage
             ->setInputArray($this->outputFastK)
             ->setInputMovingAveragePeriod($this->inputFastDPeriod)
             ->setInputMovingAverageType($this->inputMovingAverageType)
