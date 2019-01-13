@@ -2,6 +2,7 @@
 
 namespace LupeCode\phpTraderNativeTest\LupeTrader\MomentumIndicators;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 use LupeCode\phpTraderNative\LupeTrader\Core\Helper;
 use LupeCode\phpTraderNative\LupeTrader\MomentumIndicators\SlowStochastic;
 use LupeCode\phpTraderNative\LupeTrader\OverlapStudies\MovingAverage;
@@ -13,7 +14,7 @@ class SlowStochasticTest extends TestCase
     use TestingTrait;
 
     /**
-     * @throws \LupeCode\phpTraderNative\LupeTrader\Core\Exception
+     * @throws Exception
      */
     public function testCalculate()
     {
@@ -35,17 +36,16 @@ class SlowStochasticTest extends TestCase
             ->setInputDMovingAverageType($optInSlowD_MAType)
             ->calculate()
         ;
-        $Output      = [
+        $Output = [
             'SlowK' => Helper::adjustArrayOffset(
                 array_slice($slow->getOutputSlowK(), $optInSlowK_Period - 1, null, true),
                 $optInFastK_Period + $optInSlowK_Period
             ),
             'SlowD' => Helper::adjustArrayOffset(
                 array_slice($slow->getOutputSlowD(), $optInSlowD_Period - 1, null, true),
-                $optInSlowD_Period
+                $optInSlowD_Period - 1
             ),
         ];
-        $traderSlowK = array_slice($traderSlowK, 0, -1, true);
         $this->assertEquals($traderSlowK, $Output['SlowK'], '', 0.01);
         //Because the slow k has been modified, we need to recalculate the slow d
         $traderSlowD = (new MovingAverage())

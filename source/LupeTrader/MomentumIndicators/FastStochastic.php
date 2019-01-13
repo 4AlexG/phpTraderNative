@@ -159,7 +159,7 @@ class FastStochastic implements Calculation
             ->calculate()
             ->getOutputArray()
         ;
-        $this->outputFastD = Helper::adjustArrayOffset($this->outputFastD, $this->inputFastKPeriod + $this->inputFastDPeriod);
+        $this->outputFastD = Helper::adjustArrayOffset($this->outputFastD, $this->inputFastKPeriod + $this->inputFastDPeriod - 2); // Why -2? Because arrays begin at 0.
 
         return $this;
     }

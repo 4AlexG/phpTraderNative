@@ -2,7 +2,7 @@
 
 namespace LupeCode\phpTraderNativeTest\LupeTrader\MomentumIndicators;
 
-use LupeCode\phpTraderNative\LupeTrader\Core\Helper;
+use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 use LupeCode\phpTraderNative\LupeTrader\MomentumIndicators\FastStochastic;
 use LupeCode\phpTraderNative\LupeTrader\OverlapStudies\MovingAverage;
 use LupeCode\phpTraderNativeTest\TestingTrait;
@@ -13,7 +13,7 @@ class FastStochasticTest extends TestCase
     use TestingTrait;
 
     /**
-     * @throws \LupeCode\phpTraderNative\LupeTrader\Core\Exception
+     * @throws Exception
      */
     public function testCalculate()
     {
@@ -31,11 +31,11 @@ class FastStochasticTest extends TestCase
             ->setInputMovingAverageType($optInFastD_MAType)
             ->calculate()
         ;
-        $Output      = [
+        $Output = [
             'FastK' => array_slice($fast->getOutputFastK(), $optInFastD_Period - 1, null, true),
-            'FastD' => Helper::adjustArrayOffset($fast->getOutputFastD(), $optInFastK_Period + $optInFastD_Period - 2),
+            // The LupeTrader returns FastK earlier than FastD. ta-lib does not. To compare them we need to slice the extra off.
+            'FastD' => $fast->getOutputFastD(),
         ];
-        $traderFastD = array_slice($traderFastD, 0, -1, true);
         $this->assertEquals($traderFastK, $Output['FastK'], '', 0.01);
         $this->assertEquals($traderFastD, $Output['FastD'], '', 0.01);
 
