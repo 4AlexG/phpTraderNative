@@ -18,7 +18,7 @@ class RelativeStrengthIndexTest extends TestCase
         $optInTimePeriod = 10;
         $rsi             = new RelativeStrengthIndex();
         $actual          = $rsi->setPeriod($optInTimePeriod)->setInputArray($this->High)->calculate()->getOutputArray();
-        $this->assertEquals(\trader_rsi($this->High, $optInTimePeriod), $this->adjustForPECL($actual));
+        $this->assertEquals(\trader_rsi($this->High, $optInTimePeriod), $actual, '', 0.01);
         // A test with real numbers.
         $expected = [
             '42.210139', '45.101929', '43.790895', '44.024530', '44.766276', '42.444434', '48.000712', '43.387497',
@@ -59,6 +59,6 @@ class RelativeStrengthIndexTest extends TestCase
             $expected[$i] = round((float)$expected[$i], 6);
             $actual[$i]   = round($result[$i + 14], 6);
         }
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $actual, '', 0.000001);
     }
 }

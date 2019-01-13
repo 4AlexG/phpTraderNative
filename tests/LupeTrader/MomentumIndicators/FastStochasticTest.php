@@ -36,8 +36,8 @@ class FastStochasticTest extends TestCase
             'FastD' => Helper::adjustArrayOffset($fast->getOutputFastD(), $optInFastK_Period + $optInFastD_Period - 2),
         ];
         $traderFastD = array_slice($traderFastD, 0, -1, true);
-        $this->assertEquals($traderFastK, $this->adjustForPECL($Output['FastK']));
-        $this->assertEquals($traderFastD, $this->adjustForPECL($Output['FastD']));
+        $this->assertEquals($traderFastK, $Output['FastK'], '', 0.01);
+        $this->assertEquals($traderFastD, $Output['FastD'], '', 0.01);
 
     }
 }
