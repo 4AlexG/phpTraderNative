@@ -22,6 +22,7 @@ script:
   - vendor/bin/phpunit --configuration ./phpunit_coverage.xml --coverage-clover build/logs/clover.xml
 
 after_success:
+  - php vendor/bin/codacycoverage clover build/logs/clover.xml
   - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
   - php php-coveralls.phar --verbose;
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
