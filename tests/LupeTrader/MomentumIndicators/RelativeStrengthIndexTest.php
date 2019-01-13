@@ -2,6 +2,7 @@
 
 namespace LupeCode\phpTraderNativeTest\LupeTrader\MomentumIndicators;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 use LupeCode\phpTraderNative\LupeTrader\MomentumIndicators\RelativeStrengthIndex;
 use LupeCode\phpTraderNativeTest\TestingTrait;
 use PHPUnit\Framework\TestCase;
@@ -11,7 +12,7 @@ class RelativeStrengthIndexTest extends TestCase
     use TestingTrait;
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testRsi()
     {
@@ -61,4 +62,33 @@ class RelativeStrengthIndexTest extends TestCase
         }
         $this->assertEquals($expected, $actual, '', 0.000001);
     }
+
+    /**
+     * @throws Exception
+     * @group exceptions
+     */
+    public function testCalculateException()
+    {
+        $relativeStrengthIndex = new RelativeStrengthIndex();
+        $this->expectException(Exception::class);
+        $this->expectExceptionCode(Exception::INPUT_PARAMETERS_MISSING_CODE);
+        $this->expectExceptionMessage(Exception::INPUT_PARAMETERS_MISSING_MESSAGE);
+        $relativeStrengthIndex->calculate();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testCalculateTooShort()
+    {
+        $relativeStrengthIndex = new RelativeStrengthIndex();
+        $expected = [];
+        $relativeStrengthIndex
+            ->setPeriod(14)
+            ->setInputArray([1])
+            ->calculate()
+        ;
+        $this->assertEquals($expected, $relativeStrengthIndex->getOutputArray());
+    }
+
 }

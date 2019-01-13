@@ -56,6 +56,39 @@ class SlowStochasticTest extends TestCase
             ->getOutputArray()
         ;
         $this->assertEquals($traderSlowD, $Output['SlowD'], '', 0.01);
-
     }
+
+    /**
+     * @throws Exception
+     * @group exceptions
+     */
+    public function testCalculateException()
+    {
+        $slowStochastic = new SlowStochastic();
+        $this->expectException(Exception::class);
+        $this->expectExceptionCode(Exception::INPUT_PARAMETERS_MISSING_CODE);
+        $this->expectExceptionMessage(Exception::INPUT_PARAMETERS_MISSING_MESSAGE);
+        $slowStochastic->calculate();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testCalculateTooShort()
+    {
+        $slowStochastic = new SlowStochastic();
+        $expected       = [];
+        $slowStochastic
+            ->setInputClose([1])
+            ->setInputHigh([1])
+            ->setInputLow([1])
+            ->setInputSlowDPeriod(3)
+            ->setInputFastKPeriod(10)
+            ->setInputSlowKPeriod(3)
+            ->calculate()
+        ;
+        $this->assertEquals($expected, $slowStochastic->getOutputSlowD());
+        $this->assertEquals($expected, $slowStochastic->getOutputSlowK());
+    }
+
 }

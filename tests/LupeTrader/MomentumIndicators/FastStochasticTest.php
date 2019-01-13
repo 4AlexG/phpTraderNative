@@ -38,6 +38,37 @@ class FastStochasticTest extends TestCase
         ];
         $this->assertEquals($traderFastK, $Output['FastK'], '', 0.01);
         $this->assertEquals($traderFastD, $Output['FastD'], '', 0.01);
+    }
 
+    /**
+     * @throws Exception
+     * @group exceptions
+     */
+    public function testCalculateException()
+    {
+        $fast = new FastStochastic();
+        $this->expectException(Exception::class);
+        $this->expectExceptionCode(Exception::INPUT_PARAMETERS_MISSING_CODE);
+        $this->expectExceptionMessage(Exception::INPUT_PARAMETERS_MISSING_MESSAGE);
+        $fast->calculate();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testCalculateTooShort()
+    {
+        $fast     = new FastStochastic();
+        $expected = [];
+        $fast
+            ->setInputClose([1])
+            ->setInputHigh([1])
+            ->setInputLow([1])
+            ->setInputFastDPeriod(3)
+            ->setInputFastKPeriod(10)
+            ->calculate()
+        ;
+        $this->assertEquals($expected, $fast->getOutputFastD());
+        $this->assertEquals($expected, $fast->getOutputFastK());
     }
 }
