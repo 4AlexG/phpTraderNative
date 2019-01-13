@@ -2,9 +2,10 @@
 
 namespace LupeCode\phpTraderNative\LupeTrader\MomentumIndicators;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Calculation;
 use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 
-class RelativeStrengthIndex
+class RelativeStrengthIndex implements Calculation
 {
 
     const DEFAULT_PERIOD = 14;

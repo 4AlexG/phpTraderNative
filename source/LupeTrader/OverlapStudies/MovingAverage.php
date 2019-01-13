@@ -2,9 +2,10 @@
 
 namespace LupeCode\phpTraderNative\LupeTrader\OverlapStudies;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Calculation;
 use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 
-class MovingAverage
+class MovingAverage implements Calculation
 {
 
     /** @var int */

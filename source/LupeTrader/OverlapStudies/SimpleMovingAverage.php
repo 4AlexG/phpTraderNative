@@ -2,9 +2,10 @@
 
 namespace LupeCode\phpTraderNative\LupeTrader\OverlapStudies;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Calculation;
 use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 
-class SimpleMovingAverage
+class SimpleMovingAverage implements Calculation
 {
 
     const DEFAULT_PERIOD = 30;

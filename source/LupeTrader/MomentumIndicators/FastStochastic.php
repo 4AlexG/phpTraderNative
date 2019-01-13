@@ -2,11 +2,12 @@
 
 namespace LupeCode\phpTraderNative\LupeTrader\MomentumIndicators;
 
+use LupeCode\phpTraderNative\LupeTrader\Core\Calculation;
 use LupeCode\phpTraderNative\LupeTrader\Core\Exception;
 use LupeCode\phpTraderNative\LupeTrader\Core\Helper;
 use LupeCode\phpTraderNative\LupeTrader\OverlapStudies\MovingAverage;
 
-class FastStochastic
+class FastStochastic implements Calculation
 {
 
     const DEFAULT_FAST_K_PERIODS      = 14;
