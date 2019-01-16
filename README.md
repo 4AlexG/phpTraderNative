@@ -6,10 +6,10 @@ This port is written in PHP and without any other requirements.
 
 The goal is that this library can be used by those whom cannot install the PHP Trader extension.
 
-[![pipeline status](https://gitlab.com/LupeCode/phpTraderNative/badges/release/1.2.0/pipeline.svg)](https://gitlab.com/LupeCode/phpTraderNative/commits/release/1.2.0)
-[![coverage report](https://gitlab.com/LupeCode/phpTraderNative/badges/release/1.2.0/coverage.svg)](https://gitlab.com/LupeCode/phpTraderNative/commits/release/1.2.0)
-[![Build Status](https://travis-ci.org/LupeCode/phpTraderNative.svg?branch=release/1.2.0)](https://travis-ci.org/LupeCode/phpTraderNative)
-[![Coverage Status](https://coveralls.io/repos/github/LupeCode/phpTraderNative/badge.svg?branch=release/1.2.0)](https://coveralls.io/github/LupeCode/phpTraderNative?branch=release/1.2.0)
+[![pipeline status](https://gitlab.com/LupeCode/phpTraderNative/badges/release/LupeTrader/pipeline.svg)](https://gitlab.com/LupeCode/phpTraderNative/commits/release/LupeTrader)
+[![coverage report](https://gitlab.com/LupeCode/phpTraderNative/badges/release/LupeTrader/coverage.svg)](https://gitlab.com/LupeCode/phpTraderNative/commits/release/LupeTrader)
+[![Build Status](https://travis-ci.org/LupeCode/phpTraderNative.svg?branch=release/LupeTrader)](https://travis-ci.org/LupeCode/phpTraderNative)
+[![Coverage Status](https://coveralls.io/repos/github/LupeCode/phpTraderNative/badge.svg?branch=release/LupeTrader)](https://coveralls.io/github/LupeCode/phpTraderNative?branch=release/LupeTrader)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d1ef12e5eb51cb1c4de9/maintainability)](https://codeclimate.com/github/LupeCode/phpTraderNative/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d1ef12e5eb51cb1c4de9/test_coverage)](https://codeclimate.com/github/LupeCode/phpTraderNative/test_coverage)
 
