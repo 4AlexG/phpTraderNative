@@ -29,8 +29,8 @@ class RelativeStrengthIndexBench
     public function benchLupeTrader()
     {
         $optInTimePeriod = 10;
-        $rsi       = new RelativeStrengthIndex();
-        $rsi->setPeriod($optInTimePeriod)->setInputArray($this->High)->calculate();
+        $this->rsi       = new RelativeStrengthIndex();
+        $this->rsi->setPeriod($optInTimePeriod)->setInputArray($this->High)->calculate();
     }
 
     /**

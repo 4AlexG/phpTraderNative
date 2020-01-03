@@ -190,7 +190,7 @@ class TraderFriendlyTest extends TestCase
      *
      * @return array
      */
-    protected function adjustForPECL(array $outReal, int $precision = 3, int $mode = \PHP_ROUND_HALF_DOWN)
+    protected function adjustForPECL(array $outReal, int $precision = 3, int $mode = \PHP_ROUND_HALF_DOWN): array
     {
         $newOutReal = [];
         foreach ($outReal as $index => $inDouble) {
@@ -203,7 +203,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathArcCosine()
+    public function testMathArcCosine(): void
     {
         $in = [.1, .2, .3, .4, .5, .6, .7, .8, .9,];
         $this->assertEquals(\trader_acos($in), $this->adjustForPECL(TraderFriendly::mathArcCosine($in)));
@@ -212,7 +212,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testChaikinAccumulationDistributionLine()
+    public function testChaikinAccumulationDistributionLine(): void
     {
         $this->assertEquals(\trader_ad($this->High, $this->Low, $this->Close, $this->Volume), $this->adjustForPECL(TraderFriendly::chaikinAccumulationDistributionLine($this->High, $this->Low, $this->Close, $this->Volume)));
     }
@@ -220,7 +220,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathAddition()
+    public function testMathAddition(): void
     {
         $this->assertEquals(\trader_add($this->High, $this->Low), $this->adjustForPECL(TraderFriendly::mathAddition($this->High, $this->Low)));
     }
@@ -228,7 +228,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testChaikinAccumulationDistributionOscillator()
+    public function testChaikinAccumulationDistributionOscillator(): void
     {
         $optInFastPeriod = 3;
         $optInSlowPeriod = 10;
@@ -242,7 +242,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAverageDirectionalMovementIndex()
+    public function testAverageDirectionalMovementIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_adx($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::averageDirectionalMovementIndex($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -254,7 +254,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAverageDirectionalMovementIndexRating()
+    public function testAverageDirectionalMovementIndexRating(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_adxr($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::averageDirectionalMovementIndexRating($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -266,7 +266,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAbsolutePriceOscillator()
+    public function testAbsolutePriceOscillator(): void
     {
         $optInMAType     = MovingAverageType::SMA;
         $optInFastPeriod = 5;
@@ -296,10 +296,10 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAroonIndicator()
+    public function testAroonIndicator(): void
     {
         $optInTimePeriod = 10;
-        list($traderAroonDown, $traderAroonUp) = \trader_aroon($this->High, $this->Low, $optInTimePeriod);
+        [$traderAroonDown, $traderAroonUp] = \trader_aroon($this->High, $this->Low, $optInTimePeriod);
         $Output = TraderFriendly::aroonIndicator($this->High, $this->Low, $optInTimePeriod);
         $this->assertEquals($traderAroonDown, $this->adjustForPECL($Output['AroonDown']));
         $this->assertEquals($traderAroonUp, $this->adjustForPECL($Output['AroonUp']));
@@ -308,7 +308,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAroonOscillator()
+    public function testAroonOscillator(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_aroonosc($this->High, $this->Low, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::aroonOscillator($this->High, $this->Low, $optInTimePeriod)));
@@ -317,7 +317,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathArcSine()
+    public function testMathArcSine(): void
     {
         $acosArray = [.1, .2, .3, .4, .5, .6, .7, .8, .9,];
         $this->assertEquals(\trader_asin($acosArray), $this->adjustForPECL(TraderFriendly::mathArcSine($acosArray)));
@@ -326,7 +326,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathArcTangent()
+    public function testMathArcTangent(): void
     {
         $acosArray = [.1, .2, .3, .4, .5, .6, .7, .8, .9,];
         $this->assertEquals(\trader_atan($acosArray), $this->adjustForPECL(TraderFriendly::mathArcTangent($acosArray)));
@@ -335,7 +335,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAverageTrueRange()
+    public function testAverageTrueRange(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_atr($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::averageTrueRange($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -344,7 +344,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testAveragePrice()
+    public function testAveragePrice(): void
     {
         $this->assertEquals(\trader_avgprice($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::averagePrice($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -352,13 +352,13 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testBollingerBands()
+    public function testBollingerBands(): void
     {
         $optInTimePeriod = 10;
         $optInNbDevUp    = 2.0;
         $optInNbDevDn    = 2.0;
         $optInMAType     = MovingAverageType::SMA;
-        list($traderUpperBand, $traderMiddleBand, $traderLowerBand) = \trader_bbands($this->High, $optInTimePeriod, $optInNbDevUp, $optInNbDevDn, $optInMAType);
+        [$traderUpperBand, $traderMiddleBand, $traderLowerBand] = \trader_bbands($this->High, $optInTimePeriod, $optInNbDevUp, $optInNbDevDn, $optInMAType);
         $Output = TraderFriendly::bollingerBands($this->High, $optInTimePeriod, $optInNbDevUp, $optInNbDevDn, $optInMAType);
         $this->assertEquals($traderUpperBand, $this->adjustForPECL($Output['UpperBand']));
         $this->assertEquals($traderMiddleBand, $this->adjustForPECL($Output['MiddleBand']));
@@ -368,7 +368,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testBetaVolatility()
+    public function testBetaVolatility(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_beta($this->High, $this->Low, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::betaVolatility($this->High, $this->Low, $optInTimePeriod)));
@@ -377,7 +377,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testBalanceOfPower()
+    public function testBalanceOfPower(): void
     {
         $this->assertEquals(\trader_bop($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::balanceOfPower($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -385,7 +385,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCommodityChannelIndex()
+    public function testCommodityChannelIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_cci($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::commodityChannelIndex($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -394,7 +394,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleTwoCrows()
+    public function testCandleTwoCrows(): void
     {
         $this->assertEquals(\trader_cdl2crows($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleTwoCrows($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -402,7 +402,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThreeBlackCrows()
+    public function testCandleThreeBlackCrows(): void
     {
         $this->assertEquals(\trader_cdl3blackcrows($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThreeBlackCrows($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -410,7 +410,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThreeInsideUpDown()
+    public function testCandleThreeInsideUpDown(): void
     {
         $this->assertEquals(\trader_cdl3inside($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThreeInsideUpDown($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -418,7 +418,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThreeLineStrike()
+    public function testCandleThreeLineStrike(): void
     {
         $this->assertEquals(\trader_cdl3linestrike($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThreeLineStrike($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -426,7 +426,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThreeOutsideUpDown()
+    public function testCandleThreeOutsideUpDown(): void
     {
         $this->assertEquals(\trader_cdl3outside($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThreeOutsideUpDown($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -434,7 +434,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThreeStarsInTheSouth()
+    public function testCandleThreeStarsInTheSouth(): void
     {
         $this->assertEquals(\trader_cdl3starsinsouth($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThreeStarsInTheSouth($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -442,7 +442,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThreeWhiteSoldiers()
+    public function testCandleThreeWhiteSoldiers(): void
     {
         $this->assertEquals(\trader_cdl3whitesoldiers($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThreeWhiteSoldiers($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -450,7 +450,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleAbandonedBaby()
+    public function testCandleAbandonedBaby(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdlabandonedbaby($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleAbandonedBaby($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -459,7 +459,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleAdvanceBlock()
+    public function testCandleAdvanceBlock(): void
     {
         $this->assertEquals(\trader_cdladvanceblock($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleAdvanceBlock($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -467,7 +467,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleBeltHold()
+    public function testCandleBeltHold(): void
     {
         $this->assertEquals(\trader_cdlbelthold($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleBeltHold($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -475,7 +475,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleBreakaway()
+    public function testCandleBreakaway(): void
     {
         $this->assertEquals(\trader_cdlbreakaway($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleBreakaway($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -483,7 +483,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleClosingMarubozu()
+    public function testCandleClosingMarubozu(): void
     {
         $this->assertEquals(\trader_cdlclosingmarubozu($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleClosingMarubozu($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -491,7 +491,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleConcealingBabySwallow()
+    public function testCandleConcealingBabySwallow(): void
     {
         $this->assertEquals(\trader_cdlconcealbabyswall($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleConcealingBabySwallow($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -499,7 +499,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleCounterattack()
+    public function testCandleCounterattack(): void
     {
         $this->assertEquals(\trader_cdlcounterattack($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleCounterattack($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -507,7 +507,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleDarkCloudCover()
+    public function testCandleDarkCloudCover(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdldarkcloudcover($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleDarkCloudCover($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -516,7 +516,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleDoji()
+    public function testCandleDoji(): void
     {
         $this->assertEquals(\trader_cdldoji($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleDoji($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -524,7 +524,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleDojiStar()
+    public function testCandleDojiStar(): void
     {
         $this->assertEquals(\trader_cdldojistar($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleDojiStar($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -532,7 +532,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleDragonflyDoji()
+    public function testCandleDragonflyDoji(): void
     {
         $this->assertEquals(\trader_cdldragonflydoji($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleDragonflyDoji($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -540,7 +540,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleEngulfingPattern()
+    public function testCandleEngulfingPattern(): void
     {
         $this->assertEquals(\trader_cdlengulfing($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleEngulfingPattern($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -548,7 +548,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleEveningDojiStar()
+    public function testCandleEveningDojiStar(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdleveningdojistar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleEveningDojiStar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -557,7 +557,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleEveningStar()
+    public function testCandleEveningStar(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdleveningstar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleEveningStar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -566,7 +566,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleUpDownGapsSideBySideWhiteLines()
+    public function testCandleUpDownGapsSideBySideWhiteLines(): void
     {
         $this->assertEquals(\trader_cdlgapsidesidewhite($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleUpDownGapsSideBySideWhiteLines($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -574,7 +574,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleGravestoneDoji()
+    public function testCandleGravestoneDoji(): void
     {
         $this->assertEquals(\trader_cdlgravestonedoji($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleGravestoneDoji($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -582,7 +582,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHammer()
+    public function testCandleHammer(): void
     {
         $this->assertEquals(\trader_cdlhammer($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHammer($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -590,7 +590,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHangingMan()
+    public function testCandleHangingMan(): void
     {
         $this->assertEquals(\trader_cdlhangingman($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHangingMan($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -598,7 +598,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHarami()
+    public function testCandleHarami(): void
     {
         $this->assertEquals(\trader_cdlharami($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHarami($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -606,7 +606,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHaramiCross()
+    public function testCandleHaramiCross(): void
     {
         $this->assertEquals(\trader_cdlharamicross($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHaramiCross($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -614,7 +614,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHighWave()
+    public function testCandleHighWave(): void
     {
         $this->assertEquals(\trader_cdlhighwave($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHighWave($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -622,7 +622,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHikkake()
+    public function testCandleHikkake(): void
     {
         $this->assertEquals(\trader_cdlhikkake($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHikkake($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -630,7 +630,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleModifiedHikkake()
+    public function testCandleModifiedHikkake(): void
     {
         $this->assertEquals(\trader_cdlhikkakemod($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleModifiedHikkake($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -638,7 +638,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleHomingPigeon()
+    public function testCandleHomingPigeon(): void
     {
         $this->assertEquals(\trader_cdlhomingpigeon($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleHomingPigeon($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -646,7 +646,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleIdenticalThreeCrows()
+    public function testCandleIdenticalThreeCrows(): void
     {
         $this->assertEquals(\trader_cdlidentical3crows($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleIdenticalThreeCrows($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -654,7 +654,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleInNeck()
+    public function testCandleInNeck(): void
     {
         $this->assertEquals(\trader_cdlinneck($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleInNeck($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -662,7 +662,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleInvertedHammer()
+    public function testCandleInvertedHammer(): void
     {
         $this->assertEquals(\trader_cdlinvertedhammer($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleInvertedHammer($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -670,7 +670,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleKicking()
+    public function testCandleKicking(): void
     {
         $this->assertEquals(\trader_cdlkicking($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleKicking($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -678,7 +678,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleKickingByLength()
+    public function testCandleKickingByLength(): void
     {
         $this->assertEquals(\trader_cdlkickingbylength($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleKickingByLength($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -686,7 +686,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleLadderBottom()
+    public function testCandleLadderBottom(): void
     {
         $this->assertEquals(\trader_cdlladderbottom($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleLadderBottom($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -694,7 +694,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleLongLeggedDoji()
+    public function testCandleLongLeggedDoji(): void
     {
         $this->assertEquals(\trader_cdllongleggeddoji($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleLongLeggedDoji($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -702,7 +702,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleLongLine()
+    public function testCandleLongLine(): void
     {
         $this->assertEquals(\trader_cdllongline($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleLongLine($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -710,7 +710,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleMarubozu()
+    public function testCandleMarubozu(): void
     {
         $this->assertEquals(\trader_cdlmarubozu($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleMarubozu($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -718,7 +718,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleMatchingLow()
+    public function testCandleMatchingLow(): void
     {
         $this->assertEquals(\trader_cdlmatchinglow($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleMatchingLow($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -726,7 +726,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleMatHold()
+    public function testCandleMatHold(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdlmathold($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleMatHold($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -735,7 +735,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleMorningDojiStar()
+    public function testCandleMorningDojiStar(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdlmorningdojistar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleMorningDojiStar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -744,7 +744,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleMorningStar()
+    public function testCandleMorningStar(): void
     {
         $optInPenetration = 1.0;
         $this->assertEquals(\trader_cdlmorningstar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration), $this->adjustForPECL(TraderFriendly::candleMorningStar($this->Open, $this->High, $this->Low, $this->Close, $optInPenetration)));
@@ -753,7 +753,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleOnNeck()
+    public function testCandleOnNeck(): void
     {
         $this->assertEquals(\trader_cdlonneck($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleOnNeck($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -761,7 +761,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandlePiercing()
+    public function testCandlePiercing(): void
     {
         $this->assertEquals(\trader_cdlpiercing($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candlePiercing($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -769,7 +769,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleRickshawMan()
+    public function testCandleRickshawMan(): void
     {
         $this->assertEquals(\trader_cdlrickshawman($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleRickshawMan($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -777,7 +777,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleRisingFallingThreeMethods()
+    public function testCandleRisingFallingThreeMethods(): void
     {
         $this->assertEquals(\trader_cdlrisefall3methods($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleRisingFallingThreeMethods($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -785,7 +785,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleSeparatingLines()
+    public function testCandleSeparatingLines(): void
     {
         $this->assertEquals(\trader_cdlseparatinglines($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleSeparatingLines($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -793,7 +793,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleShootingStar()
+    public function testCandleShootingStar(): void
     {
         $this->assertEquals(\trader_cdlshootingstar($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleShootingStar($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -801,7 +801,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleShortLine()
+    public function testCandleShortLine(): void
     {
         $this->assertEquals(\trader_cdlshortline($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleShortLine($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -809,7 +809,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleSpinningTop()
+    public function testCandleSpinningTop(): void
     {
         $this->assertEquals(\trader_cdlspinningtop($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleSpinningTop($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -817,7 +817,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleStalled()
+    public function testCandleStalled(): void
     {
         $this->assertEquals(\trader_cdlstalledpattern($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleStalled($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -825,7 +825,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleStickSandwich()
+    public function testCandleStickSandwich(): void
     {
         $this->assertEquals(\trader_cdlsticksandwich($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleStickSandwich($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -833,7 +833,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleTakuri()
+    public function testCandleTakuri(): void
     {
         $this->assertEquals(\trader_cdltakuri($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleTakuri($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -841,7 +841,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleTasukiGap()
+    public function testCandleTasukiGap(): void
     {
         $this->assertEquals(\trader_cdltasukigap($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleTasukiGap($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -849,7 +849,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleThrusting()
+    public function testCandleThrusting(): void
     {
         $this->assertEquals(\trader_cdlthrusting($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleThrusting($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -857,7 +857,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleTristar()
+    public function testCandleTristar(): void
     {
         $this->assertEquals(\trader_cdltristar($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleTristar($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -865,7 +865,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleUniqueThreeRiver()
+    public function testCandleUniqueThreeRiver(): void
     {
         $this->assertEquals(\trader_cdlunique3river($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleUniqueThreeRiver($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -873,7 +873,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleUpsideGapTwoCrows()
+    public function testCandleUpsideGapTwoCrows(): void
     {
         $this->assertEquals(\trader_cdlupsidegap2crows($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleUpsideGapTwoCrows($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -881,7 +881,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testCandleUpsideDownsideGapThreeMethods()
+    public function testCandleUpsideDownsideGapThreeMethods(): void
     {
         $this->assertEquals(\trader_cdlxsidegap3methods($this->Open, $this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::candleUpsideDownsideGapThreeMethods($this->Open, $this->High, $this->Low, $this->Close)));
     }
@@ -889,7 +889,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathCeiling()
+    public function testMathCeiling(): void
     {
         $this->assertEquals(\trader_ceil($this->High), $this->adjustForPECL(TraderFriendly::mathCeiling($this->High)));
     }
@@ -897,7 +897,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testChandeMomentumOscillator()
+    public function testChandeMomentumOscillator(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_cmo($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::chandeMomentumOscillator($this->High, $optInTimePeriod)));
@@ -906,7 +906,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testPearsonCorrelationCoefficient()
+    public function testPearsonCorrelationCoefficient(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_correl($this->High, $this->Low, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::pearsonCorrelationCoefficient($this->High, $this->Low, $optInTimePeriod)));
@@ -915,7 +915,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathCosine()
+    public function testMathCosine(): void
     {
         $this->assertEquals(\trader_cos($this->High), $this->adjustForPECL(TraderFriendly::mathCosine($this->High)));
     }
@@ -923,7 +923,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathHyperbolicCosine()
+    public function testMathHyperbolicCosine(): void
     {
         $this->assertEquals(\trader_cosh($this->High), $this->adjustForPECL(TraderFriendly::mathHyperbolicCosine($this->High)));
     }
@@ -931,7 +931,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testDoubleExponentialMovingAverage()
+    public function testDoubleExponentialMovingAverage(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_dema($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::doubleExponentialMovingAverage($this->High, $optInTimePeriod)));
@@ -940,7 +940,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathDivision()
+    public function testMathDivision(): void
     {
         $this->assertEquals(\trader_div($this->High, $this->Low), $this->adjustForPECL(TraderFriendly::mathDivision($this->High, $this->Low)));
     }
@@ -948,7 +948,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testDirectionalMovementIndex()
+    public function testDirectionalMovementIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_dx($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::directionalMovementIndex($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -957,7 +957,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testExponentialMovingAverage()
+    public function testExponentialMovingAverage(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_ema($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::exponentialMovingAverage($this->High, $optInTimePeriod)));
@@ -966,7 +966,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathExponent()
+    public function testMathExponent(): void
     {
         $this->assertEquals(\trader_exp($this->High), $this->adjustForPECL(TraderFriendly::mathExponent($this->High)));
     }
@@ -974,7 +974,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathFloor()
+    public function testMathFloor(): void
     {
         $this->assertEquals(\trader_floor($this->High), $this->adjustForPECL(TraderFriendly::mathFloor($this->High)));
     }
@@ -982,7 +982,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testHilbertTransformDominantCyclePeriod()
+    public function testHilbertTransformDominantCyclePeriod(): void
     {
         $this->assertEquals(\trader_ht_dcperiod($this->High), $this->adjustForPECL(TraderFriendly::hilbertTransformDominantCyclePeriod($this->High)));
     }
@@ -990,7 +990,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testHilbertTransformDominantCyclePhase()
+    public function testHilbertTransformDominantCyclePhase(): void
     {
         $this->assertEquals(\trader_ht_dcphase($this->High), $this->adjustForPECL(TraderFriendly::hilbertTransformDominantCyclePhase($this->High)));
     }
@@ -998,9 +998,9 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testHilbertTransformPhasorComponents()
+    public function testHilbertTransformPhasorComponents(): void
     {
-        list($traderInPhase, $traderQuadrature) = \trader_ht_phasor($this->High);
+        [$traderInPhase, $traderQuadrature] = \trader_ht_phasor($this->High);
         $Output = TraderFriendly::hilbertTransformPhasorComponents($this->High);
         $this->assertEquals($traderQuadrature, $this->adjustForPECL($Output['Quadrature']));
         $this->assertEquals($traderInPhase, $this->adjustForPECL($Output['InPhase']));
@@ -1009,9 +1009,9 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testHilbertTransformSineWave()
+    public function testHilbertTransformSineWave(): void
     {
-        list($traderSine, $traderLeadSine) = \trader_ht_sine($this->High);
+        [$traderSine, $traderLeadSine] = \trader_ht_sine($this->High);
         $Output = TraderFriendly::hilbertTransformSineWave($this->High);
         $this->assertEquals($traderLeadSine, $this->adjustForPECL($Output['LeadSine']));
         $this->assertEquals($traderSine, $this->adjustForPECL($Output['Sine']));
@@ -1020,7 +1020,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testHilbertTransformInstantaneousTrendLine()
+    public function testHilbertTransformInstantaneousTrendLine(): void
     {
         $this->assertEquals(\trader_ht_trendline($this->High), $this->adjustForPECL(TraderFriendly::hilbertTransformInstantaneousTrendLine($this->High)));
     }
@@ -1028,7 +1028,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testHilbertTransformTrendVsCycleMode()
+    public function testHilbertTransformTrendVsCycleMode(): void
     {
         $this->assertEquals(\trader_ht_trendmode($this->High), $this->adjustForPECL(TraderFriendly::hilbertTransformTrendVsCycleMode($this->High)));
     }
@@ -1036,7 +1036,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testKaufmanAdaptiveMovingAverage()
+    public function testKaufmanAdaptiveMovingAverage(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_kama($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::kaufmanAdaptiveMovingAverage($this->High, $optInTimePeriod)));
@@ -1045,7 +1045,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testLinearRegressionAngle()
+    public function testLinearRegressionAngle(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_linearreg_angle($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::linearRegressionAngle($this->High, $optInTimePeriod)));
@@ -1054,7 +1054,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testLinearRegressionIntercept()
+    public function testLinearRegressionIntercept(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_linearreg_intercept($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::linearRegressionIntercept($this->High, $optInTimePeriod)));
@@ -1063,7 +1063,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testLinearRegressionSlope()
+    public function testLinearRegressionSlope(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_linearreg_slope($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::linearRegressionSlope($this->High, $optInTimePeriod)));
@@ -1072,7 +1072,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testLinearRegression()
+    public function testLinearRegression(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_linearreg($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::linearRegression($this->High, $optInTimePeriod)));
@@ -1081,7 +1081,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathLogarithmNatural()
+    public function testMathLogarithmNatural(): void
     {
         $this->assertEquals(\trader_ln($this->High), $this->adjustForPECL(TraderFriendly::mathLogarithmNatural($this->High)));
     }
@@ -1089,7 +1089,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathLogarithmBase10()
+    public function testMathLogarithmBase10(): void
     {
         $this->assertEquals(\trader_log10($this->High), $this->adjustForPECL(TraderFriendly::mathLogarithmBase10($this->High)));
     }
@@ -1097,7 +1097,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMovingAverage()
+    public function testMovingAverage(): void
     {
         $optInTimePeriod = 10;
         $optInMAType     = MovingAverageType::SMA;
@@ -1107,12 +1107,12 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMovingAverageConvergenceDivergence()
+    public function testMovingAverageConvergenceDivergence(): void
     {
         $optInFastPeriod   = 3;
         $optInSlowPeriod   = 10;
         $optInSignalPeriod = 5;
-        list($traderMACD, $traderMACDSignal, $traderMACDHist) = \trader_macd($this->High, $optInFastPeriod, $optInSlowPeriod, $optInSignalPeriod);
+        [$traderMACD, $traderMACDSignal, $traderMACDHist] = \trader_macd($this->High, $optInFastPeriod, $optInSlowPeriod, $optInSignalPeriod);
         $Output = TraderFriendly::movingAverageConvergenceDivergence($this->High, $optInFastPeriod, $optInSlowPeriod, $optInSignalPeriod);
         $this->assertEquals($traderMACD, $this->adjustForPECL($Output['MACD']));
         $this->assertEquals($traderMACDSignal, $this->adjustForPECL($Output['MACDSignal']));
@@ -1122,7 +1122,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMovingAverageConvergenceDivergenceExtended()
+    public function testMovingAverageConvergenceDivergenceExtended(): void
     {
         $optInFastPeriod   = 3;
         $optInFastMAType   = MovingAverageType::SMA;
@@ -1130,7 +1130,7 @@ class TraderFriendlyTest extends TestCase
         $optInSlowMAType   = MovingAverageType::SMA;
         $optInSignalPeriod = 5;
         $optInSignalMAType = MovingAverageType::SMA;
-        list($traderMACD, $traderMACDSignal, $traderMACDHist) = \trader_macdext($this->High, $optInFastPeriod, $optInFastMAType, $optInSlowPeriod, $optInSlowMAType, $optInSignalPeriod, $optInSignalMAType);
+        [$traderMACD, $traderMACDSignal, $traderMACDHist] = \trader_macdext($this->High, $optInFastPeriod, $optInFastMAType, $optInSlowPeriod, $optInSlowMAType, $optInSignalPeriod, $optInSignalMAType);
         $Output = TraderFriendly::movingAverageConvergenceDivergenceExtended($this->High, $optInFastPeriod, $optInFastMAType, $optInSlowPeriod, $optInSlowMAType, $optInSignalPeriod, $optInSignalMAType);
         $this->assertEquals($traderMACD, $this->adjustForPECL($Output['MACD']));
         $this->assertEquals($traderMACDSignal, $this->adjustForPECL($Output['MACDSignal']));
@@ -1140,10 +1140,10 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMovingAverageConvergenceDivergenceFixed()
+    public function testMovingAverageConvergenceDivergenceFixed(): void
     {
         $optInSignalPeriod = 5;
-        list($traderMACD, $traderMACDSignal, $traderMACDHist) = \trader_macdfix($this->High, $optInSignalPeriod);
+        [$traderMACD, $traderMACDSignal, $traderMACDHist] = \trader_macdfix($this->High, $optInSignalPeriod);
         $Output = TraderFriendly::movingAverageConvergenceDivergenceFixed($this->High, $optInSignalPeriod);
         $this->assertEquals($traderMACD, $this->adjustForPECL($Output['MACD']));
         $this->assertEquals($traderMACDSignal, $this->adjustForPECL($Output['MACDSignal']));
@@ -1153,11 +1153,11 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMesaAdaptiveMovingAverage()
+    public function testMesaAdaptiveMovingAverage(): void
     {
         $optInFastLimit = 0.5;
         $optInSlowLimit = 0.05;
-        list($traderMAMA, $traderFAMA) = \trader_mama($this->High, $optInFastLimit, $optInSlowLimit);
+        [$traderMAMA, $traderFAMA] = \trader_mama($this->High, $optInFastLimit, $optInSlowLimit);
         $Output = TraderFriendly::mesaAdaptiveMovingAverage($this->High, $optInFastLimit, $optInSlowLimit);
         $this->assertEquals($traderMAMA, $this->adjustForPECL($Output['MAMA']));
         $this->assertEquals($traderFAMA, $this->adjustForPECL($Output['FAMA']));
@@ -1166,7 +1166,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMovingAverageVariablePeriod()
+    public function testMovingAverageVariablePeriod(): void
     {
         $inPeriods      = array_pad(array(), count($this->High), 10);
         $optInMinPeriod = 2;
@@ -1178,7 +1178,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMax()
+    public function testMathMax(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_max($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::mathMax($this->High, $optInTimePeriod)));
@@ -1187,7 +1187,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMaxIndex()
+    public function testMathMaxIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_maxindex($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::mathMaxIndex($this->High, $optInTimePeriod)));
@@ -1196,7 +1196,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMedianPrice()
+    public function testMathMedianPrice(): void
     {
         $this->assertEquals(\trader_medprice($this->High, $this->Low), $this->adjustForPECL(TraderFriendly::mathMedianPrice($this->High, $this->Low)));
     }
@@ -1204,7 +1204,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMoneyFlowIndex()
+    public function testMoneyFlowIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_mfi($this->High, $this->Low, $this->Close, $this->Volume, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::moneyFlowIndex($this->High, $this->Low, $this->Close, $this->Volume, $optInTimePeriod)));
@@ -1213,7 +1213,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMiddlePoint()
+    public function testMiddlePoint(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_midpoint($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::middlePoint($this->High, $optInTimePeriod)));
@@ -1222,7 +1222,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMiddlePointPrice()
+    public function testMiddlePointPrice(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_midprice($this->High, $this->Low, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::middlePointPrice($this->High, $this->Low, $optInTimePeriod)));
@@ -1231,7 +1231,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMin()
+    public function testMathMin(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_min($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::mathMin($this->High, $optInTimePeriod)));
@@ -1240,7 +1240,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMinIndex()
+    public function testMathMinIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_minindex($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::mathMinIndex($this->High, $optInTimePeriod)));
@@ -1249,12 +1249,12 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMinMax()
+    public function testMathMinMax(): void
     {
         $outMin          = array();
         $outMax          = array();
         $optInTimePeriod = 10;
-        list($traderMin, $traderMax) = \trader_minmax($this->High, $optInTimePeriod);
+        [$traderMin, $traderMax] = \trader_minmax($this->High, $optInTimePeriod);
         $Output = TraderFriendly::mathMinMax($this->High, $optInTimePeriod);
         $this->assertEquals($traderMin, $this->adjustForPECL($Output['Min']));
         $this->assertEquals($traderMax, $this->adjustForPECL($Output['Max']));
@@ -1263,12 +1263,12 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMinMaxIndex()
+    public function testMathMinMaxIndex(): void
     {
         $outMin          = array();
         $outMax          = array();
         $optInTimePeriod = 10;
-        list($traderMin, $traderMax) = \trader_minmaxindex($this->High, $optInTimePeriod);
+        [$traderMin, $traderMax] = \trader_minmaxindex($this->High, $optInTimePeriod);
         $Output = TraderFriendly::mathMinMaxIndex($this->High, $optInTimePeriod);
         $this->assertEquals($traderMin, $this->adjustForPECL($Output['Min']));
         $this->assertEquals($traderMax, $this->adjustForPECL($Output['Max']));
@@ -1277,7 +1277,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMinusDirectionalIndicator()
+    public function testMinusDirectionalIndicator(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_minus_di($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::minusDirectionalIndicator($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -1286,7 +1286,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMinusDirectionalMovement()
+    public function testMinusDirectionalMovement(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_minus_dm($this->High, $this->Low, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::minusDirectionalMovement($this->High, $this->Low, $optInTimePeriod)));
@@ -1295,7 +1295,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMomentum()
+    public function testMomentum(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_mom($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::momentum($this->High, $optInTimePeriod)));
@@ -1304,7 +1304,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathMultiply()
+    public function testMathMultiply(): void
     {
         $this->assertEquals(\trader_mult($this->Low, $this->High), $this->adjustForPECL(TraderFriendly::mathMultiply($this->Low, $this->High)));
     }
@@ -1312,7 +1312,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testNormalizedAverageTrueRange()
+    public function testNormalizedAverageTrueRange(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_natr($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::normalizedAverageTrueRange($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -1321,7 +1321,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testOnBalanceVolume()
+    public function testOnBalanceVolume(): void
     {
         $this->assertEquals(\trader_obv($this->High, $this->Volume), $this->adjustForPECL(TraderFriendly::onBalanceVolume($this->High, $this->Volume)));
     }
@@ -1329,7 +1329,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testPlusDirectionalIndicator()
+    public function testPlusDirectionalIndicator(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_plus_di($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::plusDirectionalIndicator($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -1338,7 +1338,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testPlusDirectionalMovement()
+    public function testPlusDirectionalMovement(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_plus_dm($this->High, $this->Low, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::plusDirectionalMovement($this->High, $this->Low, $optInTimePeriod)));
@@ -1347,7 +1347,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testPercentagePriceOscillator()
+    public function testPercentagePriceOscillator(): void
     {
         $optInFastPeriod = 10;
         $optInSlowPeriod = 10;
@@ -1358,7 +1358,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRateOfChange()
+    public function testRateOfChange(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_roc($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::rateOfChange($this->High, $optInTimePeriod)));
@@ -1367,7 +1367,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRateOfChangePercentage()
+    public function testRateOfChangePercentage(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_rocp($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::rateOfChangePercentage($this->High, $optInTimePeriod)));
@@ -1376,7 +1376,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRateOfChangeRatio100()
+    public function testRateOfChangeRatio100(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_rocr100($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::rateOfChangeRatio100($this->High, $optInTimePeriod)));
@@ -1385,7 +1385,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRateOfChangeRatio()
+    public function testRateOfChangeRatio(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_rocr($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::rateOfChangeRatio($this->High, $optInTimePeriod)));
@@ -1394,7 +1394,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRelativeStrengthIndex()
+    public function testRelativeStrengthIndex(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_rsi($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::relativeStrengthIndex($this->High, $optInTimePeriod)));
@@ -1403,7 +1403,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testParabolicSAR()
+    public function testParabolicSAR(): void
     {
         $optInAcceleration = 10;
         $optInMaximum      = 20;
@@ -1413,7 +1413,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testParabolicSARExtended()
+    public function testParabolicSARExtended(): void
     {
         $optInStartValue            = 0.0;
         $optInOffsetOnReverse       = 0.0;
@@ -1423,14 +1423,13 @@ class TraderFriendlyTest extends TestCase
         $optInAccelerationInitShort = 2.0;
         $optInAccelerationShort     = 2.0;
         $optInAccelerationMaxShort  = 2.0;
-        $optInAccelerationMaxShort  = 2.0;
         $this->assertEquals(\trader_sarext($this->High, $this->Low, $optInStartValue, $optInOffsetOnReverse, $optInAccelerationInitLong, $optInAccelerationLong, $optInAccelerationMaxLong, $optInAccelerationInitShort, $optInAccelerationShort, $optInAccelerationMaxShort), $this->adjustForPECL(TraderFriendly::parabolicSARExtended($this->High, $this->Low, $optInStartValue, $optInOffsetOnReverse, $optInAccelerationInitLong, $optInAccelerationLong, $optInAccelerationMaxLong, $optInAccelerationInitShort, $optInAccelerationShort, $optInAccelerationMaxShort)));
     }
 
     /**
      * @throws \Exception
      */
-    public function testMathSine()
+    public function testMathSine(): void
     {
         $this->assertEquals(\trader_sin($this->High), $this->adjustForPECL(TraderFriendly::mathSine($this->High)));
     }
@@ -1438,7 +1437,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathHyperbolicSine()
+    public function testMathHyperbolicSine(): void
     {
         $this->assertEquals(\trader_sinh($this->High), $this->adjustForPECL(TraderFriendly::mathHyperbolicSine($this->High)));
     }
@@ -1446,7 +1445,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testSimpleMovingAverage()
+    public function testSimpleMovingAverage(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_sma($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::simpleMovingAverage($this->High, $optInTimePeriod)));
@@ -1455,7 +1454,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathSquareRoot()
+    public function testMathSquareRoot(): void
     {
         $this->assertEquals(\trader_sqrt($this->High), $this->adjustForPECL(TraderFriendly::mathSquareRoot($this->High)));
     }
@@ -1463,7 +1462,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testStandardDeviation()
+    public function testStandardDeviation(): void
     {
         $optInTimePeriod = 10;
         $optInNbDev      = 1;
@@ -1473,14 +1472,14 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testStochastic()
+    public function testStochastic(): void
     {
         $optInFastK_Period = 2;
         $optInSlowK_Period = 10;
         $optInSlowK_MAType = MovingAverageType::SMA;
         $optInSlowD_Period = 20;
         $optInSlowD_MAType = MovingAverageType::SMA;
-        list($traderSlowK, $traderSlowD) = \trader_stoch($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInSlowK_Period, $optInSlowK_MAType, $optInSlowD_Period, $optInSlowD_MAType);
+        [$traderSlowK, $traderSlowD] = \trader_stoch($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInSlowK_Period, $optInSlowK_MAType, $optInSlowD_Period, $optInSlowD_MAType);
         $Output = TraderFriendly::stochastic($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInSlowK_Period, $optInSlowK_MAType, $optInSlowD_Period, $optInSlowD_MAType);
         $this->assertEquals($traderSlowK, $this->adjustForPECL($Output['SlowK']));
         $this->assertEquals($traderSlowD, $this->adjustForPECL($Output['SlowD']));
@@ -1489,12 +1488,12 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testStochasticFast()
+    public function testStochasticFast(): void
     {
         $optInFastK_Period = 2;
         $optInFastD_Period = 10;
         $optInFastD_MAType = MovingAverageType::SMA;
-        list($traderFastK, $traderFastD) = \trader_stochf($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
+        [$traderFastK, $traderFastD] = \trader_stochf($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
         $Output = TraderFriendly::stochasticFast($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
         $this->assertEquals($traderFastK, $this->adjustForPECL($Output['FastK']));
         $this->assertEquals($traderFastD, $this->adjustForPECL($Output['FastD']));
@@ -1503,13 +1502,13 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testStochasticRelativeStrengthIndex()
+    public function testStochasticRelativeStrengthIndex(): void
     {
         $optInTimePeriod   = 10;
         $optInFastK_Period = 2;
         $optInFastD_Period = 10;
         $optInFastD_MAType = MovingAverageType::SMA;
-        list($traderFastK, $traderFastD) = \trader_stochrsi($this->High, $optInTimePeriod, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
+        [$traderFastK, $traderFastD] = \trader_stochrsi($this->High, $optInTimePeriod, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
         $Output = TraderFriendly::stochasticRelativeStrengthIndex($this->High, $optInTimePeriod, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
         $this->assertEquals($traderFastK, $this->adjustForPECL($Output['FastK']));
         $this->assertEquals($traderFastD, $this->adjustForPECL($Output['FastD']));
@@ -1518,7 +1517,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathSubtraction()
+    public function testMathSubtraction(): void
     {
         $this->assertEquals(\trader_sub($this->High, $this->Low), $this->adjustForPECL(TraderFriendly::mathSubtraction($this->High, $this->Low)));
     }
@@ -1526,7 +1525,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathSummation()
+    public function testMathSummation(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_sum($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::mathSummation($this->High, $optInTimePeriod)));
@@ -1535,7 +1534,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTripleExponentialMovingAverageT3()
+    public function testTripleExponentialMovingAverageT3(): void
     {
         $optInTimePeriod = 10;
         $optInVFactor    = 0.7;
@@ -1545,7 +1544,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathTangent()
+    public function testMathTangent(): void
     {
         $this->assertEquals(\trader_tan($this->High), $this->adjustForPECL(TraderFriendly::mathTangent($this->High)));
     }
@@ -1553,7 +1552,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testMathHyperbolicTangent()
+    public function testMathHyperbolicTangent(): void
     {
         $this->assertEquals(\trader_tanh($this->High), $this->adjustForPECL(TraderFriendly::mathHyperbolicTangent($this->High)));
     }
@@ -1561,7 +1560,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTripleExponentialMovingAverage()
+    public function testTripleExponentialMovingAverage(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_tema($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::tripleExponentialMovingAverage($this->High, $optInTimePeriod)));
@@ -1570,7 +1569,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTrueRange()
+    public function testTrueRange(): void
     {
         $this->assertEquals(\trader_trange($this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::trueRange($this->High, $this->Low, $this->Close)));
     }
@@ -1578,7 +1577,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTriangularMovingAverage()
+    public function testTriangularMovingAverage(): void
     {
         $optInTimePeriod = 3;
         $this->assertEquals(\trader_trima($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::triangularMovingAverage($this->High, $optInTimePeriod)));
@@ -1587,7 +1586,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTripleExponentialAverage()
+    public function testTripleExponentialAverage(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_trix($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::tripleExponentialAverage($this->High, $optInTimePeriod)));
@@ -1596,7 +1595,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTimeSeriesForecast()
+    public function testTimeSeriesForecast(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_tsf($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::timeSeriesForecast($this->High, $optInTimePeriod)));
@@ -1605,7 +1604,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testTypicalPrice()
+    public function testTypicalPrice(): void
     {
         $this->assertEquals(\trader_typprice($this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::typicalPrice($this->High, $this->Low, $this->Close)));
     }
@@ -1613,7 +1612,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testUltimateOscillator()
+    public function testUltimateOscillator(): void
     {
         $optInTimePeriod1 = 10;
         $optInTimePeriod2 = 11;
@@ -1624,7 +1623,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testVariance()
+    public function testVariance(): void
     {
         $optInTimePeriod = 10;
         $optInNbDev      = 1.0;
@@ -1634,7 +1633,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testWeightedClosePrice()
+    public function testWeightedClosePrice(): void
     {
         $this->assertEquals(\trader_wclprice($this->High, $this->Low, $this->Close), $this->adjustForPECL(TraderFriendly::weightedClosePrice($this->High, $this->Low, $this->Close)));
     }
@@ -1642,7 +1641,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testWilliamsR()
+    public function testWilliamsR(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_willr($this->High, $this->Low, $this->Close, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::williamsR($this->High, $this->Low, $this->Close, $optInTimePeriod)));
@@ -1651,7 +1650,7 @@ class TraderFriendlyTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testWeightedMovingAverage()
+    public function testWeightedMovingAverage(): void
     {
         $optInTimePeriod = 10;
         $this->assertEquals(\trader_wma($this->High, $optInTimePeriod), $this->adjustForPECL(TraderFriendly::weightedMovingAverage($this->High, $optInTimePeriod)));

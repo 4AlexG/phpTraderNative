@@ -1,0 +1,2 @@
+# Configuration generated in phpqa
+{parameters: {autoload_directories: [%currentWorkingDirectory%/./source/], excludes_analyse: [%currentWorkingDirectory%/vendor]}}

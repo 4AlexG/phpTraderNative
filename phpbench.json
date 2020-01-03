@@ -1,6 +1,17 @@
 {
   "bootstrap": "vendor/autoload.php",
   "path": "benchmarks",
+  "outputs": {
+    "console": {
+      "renderer": "console",
+      "table_style": "symfony-style-guide"
+    },
+    "html": {
+      "title": "PHPBench",
+      "renderer": "xslt",
+      "file": "test-results/phpbench/benchmark.html"
+    }
+  },
   "reports": {
     "my_report": {
       "generator": "table",
@@ -11,8 +22,7 @@
       ],
       "diff_col": "mean",
       "break": [
-        "benchmark",
-        "revs"
+        "benchmark"
       ]
     }
   }

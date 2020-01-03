@@ -14,7 +14,7 @@ class SimpleMovingAverageTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculate()
+    public function testCalculate(): void
     {
         $optInTimePeriod = 10;
         $traderSMA = \trader_sma($this->High, $optInTimePeriod);
@@ -26,7 +26,7 @@ class SimpleMovingAverageTest extends TestCase
      * @throws Exception
      * @group exceptions
      */
-    public function testCalculateException()
+    public function testCalculateException(): void
     {
         $simpleMovingAverageIndex = new SimpleMovingAverage();
         $this->expectException(Exception::class);
@@ -38,7 +38,7 @@ class SimpleMovingAverageTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculateTooShort()
+    public function testCalculateTooShort(): void
     {
         $simpleMovingAverageIndex = new SimpleMovingAverage();
         $expected              = [];

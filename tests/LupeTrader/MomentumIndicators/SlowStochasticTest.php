@@ -16,14 +16,14 @@ class SlowStochasticTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculate()
+    public function testCalculate(): void
     {
         $optInFastK_Period = 14;
         $optInSlowK_Period = 3;
         $optInSlowK_MAType = MovingAverage::SIMPLE_MOVING_AVERAGE;
         $optInSlowD_Period = 3;
         $optInSlowD_MAType = MovingAverage::SIMPLE_MOVING_AVERAGE;
-        list($traderSlowK, $traderSlowD) = \trader_stoch($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInSlowK_Period, $optInSlowK_MAType, $optInSlowD_Period, $optInSlowD_MAType);
+        [$traderSlowK, $traderSlowD] = \trader_stoch($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInSlowK_Period, $optInSlowK_MAType, $optInSlowD_Period, $optInSlowD_MAType);
         $slow = new SlowStochastic();
         $slow
             ->setInputHigh($this->High)
@@ -62,7 +62,7 @@ class SlowStochasticTest extends TestCase
      * @throws Exception
      * @group exceptions
      */
-    public function testCalculateException()
+    public function testCalculateException(): void
     {
         $slowStochastic = new SlowStochastic();
         $this->expectException(Exception::class);
@@ -74,7 +74,7 @@ class SlowStochasticTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculateTooShort()
+    public function testCalculateTooShort(): void
     {
         $slowStochastic = new SlowStochastic();
         $expected       = [];

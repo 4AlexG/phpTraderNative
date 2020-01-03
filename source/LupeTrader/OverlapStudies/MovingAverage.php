@@ -82,7 +82,7 @@ class MovingAverage implements Calculation
     /**
      * @return array
      */
-    public function getOutputArray()
+    public function getOutputArray(): array
     {
         return $this->outputArray;
     }
@@ -91,10 +91,10 @@ class MovingAverage implements Calculation
      * @return $this
      * @throws \LupeCode\phpTraderNative\LupeTrader\Core\Exception
      */
-    public function calculate()
+    public function calculate(): self
     {
         $this->outputArray = [];
-        if (is_null($this->inputArray) || is_null($this->inputMovingAveragePeriod)) {
+        if ($this->inputArray === null || $this->inputMovingAveragePeriod === null) {
             throw new Exception(Exception::INPUT_PARAMETERS_MISSING_MESSAGE, Exception::INPUT_PARAMETERS_MISSING_CODE);
         }
         $count = count($this->inputArray);

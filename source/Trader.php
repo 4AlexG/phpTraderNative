@@ -19,25 +19,25 @@ class Trader
 {
 
     /** @var CycleIndicators */
-    protected static $cycleIndicators = null;
+    protected static $cycleIndicators;
     /** @var MathOperators */
-    protected static $mathOperators = null;
+    protected static $mathOperators;
     /** @var MathTransform */
-    protected static $mathTransform = null;
+    protected static $mathTransform;
     /** @var MomentumIndicators */
-    protected static $momentumIndicators = null;
+    protected static $momentumIndicators;
     /** @var OverlapStudies */
-    protected static $overlapStudies = null;
+    protected static $overlapStudies;
     /** @var PatternRecognition */
-    protected static $patternRecognition = null;
+    protected static $patternRecognition;
     /** @var PriceTransform */
-    protected static $priceTransform = null;
+    protected static $priceTransform;
     /** @var StatisticFunctions */
-    protected static $statisticFunctions = null;
+    protected static $statisticFunctions;
     /** @var VolatilityIndicators */
-    protected static $volatilityIndicators = null;
+    protected static $volatilityIndicators;
     /** @var VolumeIndicators */
-    protected static $volumeIndicators = null;
+    protected static $volumeIndicators;
 
     /** @var int */
     protected static $outBegIdx;
@@ -47,10 +47,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\CycleIndicators
      */
-    protected static function getCycleIndicators()
+    protected static function getCycleIndicators(): CycleIndicators
     {
         self::prep();
-        if (\is_null(self::$cycleIndicators)) {
+        if (self::$cycleIndicators === null) {
             self::$cycleIndicators = new CycleIndicators();
             self::$cycleIndicators::construct();
         }
@@ -61,10 +61,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\MathOperators
      */
-    protected static function getMathOperators()
+    protected static function getMathOperators(): MathOperators
     {
         self::prep();
-        if (\is_null(self::$mathOperators)) {
+        if (self::$mathOperators === null) {
             self::$mathOperators = new MathOperators();
             self::$mathOperators::construct();
         }
@@ -75,10 +75,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\MathTransform
      */
-    protected static function getMathTransform()
+    protected static function getMathTransform(): MathTransform
     {
         self::prep();
-        if (\is_null(self::$mathTransform)) {
+        if (self::$mathTransform === null) {
             self::$mathTransform = new MathTransform();
             self::$mathTransform::construct();
         }
@@ -89,10 +89,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\MomentumIndicators
      */
-    protected static function getMomentumIndicators()
+    protected static function getMomentumIndicators(): MomentumIndicators
     {
         self::prep();
-        if (\is_null(self::$momentumIndicators)) {
+        if (self::$momentumIndicators === null) {
             self::$momentumIndicators = new MomentumIndicators();
             self::$momentumIndicators::construct();
         }
@@ -103,10 +103,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\OverlapStudies
      */
-    protected static function getOverlapStudies()
+    protected static function getOverlapStudies(): OverlapStudies
     {
         self::prep();
-        if (\is_null(self::$overlapStudies)) {
+        if (self::$overlapStudies === null) {
             self::$overlapStudies = new OverlapStudies();
             self::$overlapStudies::construct();
         }
@@ -117,10 +117,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\PatternRecognition
      */
-    protected static function getPatternRecognition()
+    protected static function getPatternRecognition(): PatternRecognition
     {
         self::prep();
-        if (\is_null(self::$patternRecognition)) {
+        if (self::$patternRecognition === null) {
             self::$patternRecognition = new PatternRecognition();
             self::$patternRecognition::construct();
         }
@@ -131,10 +131,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\PriceTransform
      */
-    protected static function getPriceTransform()
+    protected static function getPriceTransform(): PriceTransform
     {
         self::prep();
-        if (\is_null(self::$priceTransform)) {
+        if (self::$priceTransform === null) {
             self::$priceTransform = new PriceTransform();
             self::$priceTransform::construct();
         }
@@ -145,10 +145,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\StatisticFunctions
      */
-    protected static function getStatisticFunctions()
+    protected static function getStatisticFunctions(): StatisticFunctions
     {
         self::prep();
-        if (\is_null(self::$statisticFunctions)) {
+        if (self::$statisticFunctions === null) {
             self::$statisticFunctions = new StatisticFunctions();
             self::$statisticFunctions::construct();
         }
@@ -159,10 +159,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\VolatilityIndicators
      */
-    protected static function getVolatilityIndicators()
+    protected static function getVolatilityIndicators(): VolatilityIndicators
     {
         self::prep();
-        if (\is_null(self::$volatilityIndicators)) {
+        if (self::$volatilityIndicators === null) {
             self::$volatilityIndicators = new VolatilityIndicators();
             self::$volatilityIndicators::construct();
         }
@@ -173,10 +173,10 @@ class Trader
     /**
      * @return \LupeCode\phpTraderNative\TALib\Core\VolumeIndicators
      */
-    protected static function getVolumeIndicators()
+    protected static function getVolumeIndicators(): VolumeIndicators
     {
         self::prep();
-        if (\is_null(self::$volumeIndicators)) {
+        if (self::$volumeIndicators === null) {
             self::$volumeIndicators = new VolumeIndicators();
             self::$volumeIndicators::construct();
         }
@@ -184,7 +184,7 @@ class Trader
         return self::$volumeIndicators;
     }
 
-    protected static function prep()
+    protected static function prep(): void
     {
         self::$outBegIdx    = 0;
         self::$outNBElement = 0;
@@ -195,14 +195,13 @@ class Trader
      *
      * @throws \Exception
      */
-    protected static function checkForError(int $ReturnCode)
+    protected static function checkForError(int $ReturnCode): void
     {
-        switch ($ReturnCode) {
-            case ReturnCode::Success:
-                return;
-            default:
-                throw new \Exception(ReturnCode::Messages[$ReturnCode], $ReturnCode);
+        if ($ReturnCode === ReturnCode::Success) {
+            return;
         }
+
+        throw new \RuntimeException(ReturnCode::Messages[$ReturnCode], $ReturnCode);
     }
 
     /**
@@ -211,12 +210,12 @@ class Trader
      * @return int
      * @throws \Exception
      */
-    protected static function verifyArrayCounts(array $arrays)
+    protected static function verifyArrayCounts(array $arrays): int
     {
         $count = count($arrays[0]);
         foreach ($arrays as &$array) {
             if (count($array) !== $count) {
-                throw new \Exception(ReturnCode::Messages[ReturnCode::UnevenParameters], ReturnCode::UnevenParameters);
+                throw new \RuntimeException(ReturnCode::Messages[ReturnCode::UnevenParameters], ReturnCode::UnevenParameters);
             }
             $array = \array_values($array);
         }
@@ -1168,7 +1167,6 @@ class Trader
     public static function cdlhangingman(array $open, array $high, array $low, array $close): array
     {
         $endIdx     = self::verifyArrayCounts([&$open, &$high, &$low, &$close]);
-        $endIdx     = count($high) - 1;
         $outInteger = [];
         self::checkForError(self::getPatternRecognition()::cdlHangingMan(0, $endIdx, $open, $high, $low, $close, self::$outBegIdx, self::$outNBElement, $outInteger));
 
@@ -2183,8 +2181,8 @@ class Trader
         self::checkForError(self::getCycleIndicators()::htPhasor(0, $endIdx, $real, self::$outBegIdx, self::$outNBElement, $outInPhase, $outQuadrature));
 
         return [
-            "Quadrature" => self::adjustIndexes($outQuadrature, self::$outBegIdx),
-            "InPhase"    => self::adjustIndexes($outInPhase, self::$outBegIdx),
+            'Quadrature' => self::adjustIndexes($outQuadrature, self::$outBegIdx),
+            'InPhase'    => self::adjustIndexes($outInPhase, self::$outBegIdx),
         ];
     }
 
@@ -2205,8 +2203,8 @@ class Trader
         self::checkForError(self::getCycleIndicators()::htSine(0, $endIdx, $real, self::$outBegIdx, self::$outNBElement, $outSine, $outLeadSine));
 
         return [
-            "LeadSine" => self::adjustIndexes($outLeadSine, self::$outBegIdx),
-            "Sine"     => self::adjustIndexes($outSine, self::$outBegIdx),
+            'LeadSine' => self::adjustIndexes($outLeadSine, self::$outBegIdx),
+            'Sine'     => self::adjustIndexes($outSine, self::$outBegIdx),
         ];
     }
 
@@ -2644,7 +2642,7 @@ class Trader
      * @return array Returns an array with calculated data.
      * @throws \Exception
      */
-    public static function midprice(array $high, array $low, int $timePeriod = 14)
+    public static function midprice(array $high, array $low, int $timePeriod = 14): array
     {
         $endIdx  = self::verifyArrayCounts([&$high, &$low]);
         $outReal = [];

@@ -15,12 +15,12 @@ class FastStochasticTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculate()
+    public function testCalculate(): void
     {
         $optInFastK_Period = 14;
         $optInFastD_Period = 3;
         $optInFastD_MAType = MovingAverage::SIMPLE_MOVING_AVERAGE;
-        list($traderFastK, $traderFastD) = \trader_stochf($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
+        [$traderFastK, $traderFastD] = \trader_stochf($this->High, $this->Low, $this->Close, $optInFastK_Period, $optInFastD_Period, $optInFastD_MAType);
         $fast = new FastStochastic();
         $fast
             ->setInputHigh($this->High)
@@ -44,7 +44,7 @@ class FastStochasticTest extends TestCase
      * @throws Exception
      * @group exceptions
      */
-    public function testCalculateException()
+    public function testCalculateException(): void
     {
         $fast = new FastStochastic();
         $this->expectException(Exception::class);
@@ -56,7 +56,7 @@ class FastStochasticTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculateTooShort()
+    public function testCalculateTooShort(): void
     {
         $fast     = new FastStochastic();
         $expected = [];

@@ -1880,7 +1880,7 @@ class TraderFriendly
      * @return array Returns an array with calculated data.
      * @throws \Exception
      */
-    public static function middlePointPrice(array $high, array $low, int $timePeriod = 14)
+    public static function middlePointPrice(array $high, array $low, int $timePeriod = 14): array
     {
         return Trader::midprice($high, $low, $timePeriod);
     }

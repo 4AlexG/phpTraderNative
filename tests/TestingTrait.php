@@ -186,7 +186,7 @@ trait TestingTrait
      *
      * @return array
      */
-    protected function adjustForPECL(array $outReal, int $precision = 3, int $mode = \PHP_ROUND_HALF_DOWN)
+    protected function adjustForPECL(array $outReal, int $precision = 3, int $mode = \PHP_ROUND_HALF_DOWN): array
     {
         $newOutReal = [];
         foreach ($outReal as $index => $inDouble) {

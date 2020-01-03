@@ -57,10 +57,7 @@ class RelativeStrengthIndex implements Calculation
      */
     protected function rsiFormula(float $gains, float $losses): float
     {
-        $rs  = ($gains / $this->period) / ($losses / $this->period);
-        $rsi = (100 - (100 / (1 + $rs)));
-
-        return $rsi;
+        return 100 - (100 / (1 + ($gains / $this->period) / ($losses / $this->period)));
     }
 
     /**
@@ -84,12 +81,12 @@ class RelativeStrengthIndex implements Calculation
             $gains  += max($delta, 0);
             $losses += -min($delta, 0);
         }
-        $rsi = [$this->period => $this->rsiFormula($gains, $losses)];
+        $rsi = [$this->period => 100 - (100 / (1 + ($gains / $this->period) / ($losses / $this->period)))];
         for (; $iterator < $count; $iterator++) {
             $delta  = $this->inputArray[$iterator] - $this->inputArray[$iterator - 1];
             $gains  = $gains * ($this->period - 1) / $this->period + max($delta, 0);
             $losses = $losses * ($this->period - 1) / $this->period + -min($delta, 0);
-            $rsi[]  = $this->rsiFormula($gains, $losses);
+            $rsi[]  = 100 - (100 / (1 + ($gains / $this->period) / ($losses / $this->period)));
         }
         $this->outputArray = $rsi;
 

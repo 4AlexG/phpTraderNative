@@ -53,7 +53,7 @@ class SimpleMovingAverage implements Calculation
      * @return $this
      * @throws Exception
      */
-    public function calculate()
+    public function calculate(): self
     {
         if (empty($this->inputArray) || empty($this->period)) {
             throw new Exception(Exception::INPUT_PARAMETERS_MISSING_MESSAGE, Exception::INPUT_PARAMETERS_MISSING_CODE);
@@ -66,10 +66,10 @@ class SimpleMovingAverage implements Calculation
         }
         $subArray = [];
         for ($iterator = 1; $iterator < $this->period; $iterator++) {
-            array_push($subArray, $this->inputArray[$iterator - 1]);
+            $subArray[] = $this->inputArray[$iterator - 1];
         }
         for (; $iterator <= $count; $iterator++) {
-            array_push($subArray, $this->inputArray[$iterator - 1]);
+            $subArray[]                       = $this->inputArray[$iterator - 1];
             $this->outputArray[$iterator - 1] = array_sum($subArray) / $this->period;
             array_shift($subArray);
         }

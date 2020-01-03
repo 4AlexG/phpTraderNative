@@ -14,7 +14,7 @@ class RelativeStrengthIndexTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testRsi()
+    public function testRsi(): void
     {
         $optInTimePeriod = 10;
         $rsi             = new RelativeStrengthIndex();
@@ -67,7 +67,7 @@ class RelativeStrengthIndexTest extends TestCase
      * @throws Exception
      * @group exceptions
      */
-    public function testCalculateException()
+    public function testCalculateException(): void
     {
         $relativeStrengthIndex = new RelativeStrengthIndex();
         $this->expectException(Exception::class);
@@ -79,7 +79,7 @@ class RelativeStrengthIndexTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCalculateTooShort()
+    public function testCalculateTooShort(): void
     {
         $relativeStrengthIndex = new RelativeStrengthIndex();
         $expected = [];
